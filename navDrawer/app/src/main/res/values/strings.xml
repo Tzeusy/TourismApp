@@ -15,5 +15,6 @@
     <string name="notifications">Notifications</string>
     <string name="receive_notifications">Receive Notifications On Updates</string>
     <string name="languages">Language</string>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

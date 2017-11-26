@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.attractionlocator) {
             Log.d("Heh","ALocator was pressed");
-            startActivity(new Intent(MainActivity.this,MyPrefsActivity.class));
+            startActivity(new Intent(MainActivity.this,MapsActivity.class));
 
         } else if (id == R.id.itinerary) {
             Log.d("Heh","Itinerary was pressed");
