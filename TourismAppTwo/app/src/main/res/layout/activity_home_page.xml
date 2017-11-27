@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.design.widget.CoordinatorLayout
+    android:id="@+id/main_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.tze.tourismapptwo.HomePage">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="700dp"
+            android:layout_height="720dp"
+            android:adjustViewBounds="false"
+            android:contentDescription="@string/homewallpaper"
+            android:cropToPadding="false"
+            android:paddingStart="-230dp"
+            app:srcCompat="@drawable/wallpaper" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:fontFamily="casual"
+            android:text="@string/welcome_to_singapore"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textIsSelectable="true"
+            android:textSize="40sp" />
+
+        <Button
+            android:id="@+id/Nearby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="165dp"
+            android:layout_marginTop="380dp"
+            android:textSize="18sp"
+            android:background="#20000000"
+            android:fontFamily="casual"
+            android:text="@string/nearby"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/Itinerary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="430dp"
+            android:text="@string/itinerary"
+            android:textSize="18sp"
+            android:background="#20000000"
+            android:fontFamily="casual"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="165dp"
+            />
+
+        <Button
+            android:id="@+id/About"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="480dp"
+            android:text="@string/about"
+            android:textSize="18sp"
+            android:background="#20000000"
+            android:fontFamily="casual"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="165dp"
+            />
+    </FrameLayout>
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:background="#00000000">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#30000000"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+

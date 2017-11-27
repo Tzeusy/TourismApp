@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">TourismAppTwo</string>
+    <string name="itinerary">Itinerary</string>
+    <string name="settings">Settings</string>
+    <string name="nearby">Nearby</string>
+    <string name="welcome_to_singapore">Welcome to Singapore</string>
+    <string name="homewallpaper">HomeWallpaper</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="dark_theme">Enable Dark Theme</string>
+    <string name="notifications">Notifications</string>
+    <string name="receive_notifications">Enable notifications when minimized</string>
+    <string name="languages">Language</string>
+    <string name="title_day_detail">Language options</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about">about</string>
+</resources>
