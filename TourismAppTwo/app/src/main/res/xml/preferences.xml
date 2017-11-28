@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <EditTextPreference
+        android:key="email"
+        android:title="@string/email"
+        android:persistent="true"
+        android:dialogTitle="@string/emailrequest"
+        android:dialogMessage="@string/requestemail"
+        android:defaultValue="@string/defaultemail"
+        android:textColor="@color/blue"
+        />
     <CheckBoxPreference
+        android:defaultValue="false"
         android:key="night_mode"
-        android:title="@string/night_mode"
         android:summary="@string/dark_theme"
-        android:defaultValue="false" />
+        android:title="@string/night_mode" />
     <CheckBoxPreference
         android:key="notifications_setting"
         android:title="@string/notifications"
@@ -17,5 +26,6 @@
         android:dialogTitle="@string/title_day_detail"
         android:entries="@array/language_list"
         android:entryValues="@array/save_language_list"
-        android:defaultValue="@string/english" />
+        android:defaultValue="@string/english"
+        />
 </PreferenceScreen>

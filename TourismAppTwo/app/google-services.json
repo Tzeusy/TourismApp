@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "745313133101",
+    "firebase_url": "https://tourismapptwo.firebaseio.com",
+    "project_id": "tourismapptwo",
+    "storage_bucket": "tourismapptwo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745313133101:android:74458793a71034ea",
+        "android_client_info": {
+          "package_name": "com.example.tze.tourismapptwo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745313133101-ajds5bt84jatbdpobvuqgpnheti3st1t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tze.tourismapptwo",
+            "certificate_hash": "7dd00aba615b086f14f7425bbcb71d27099f98a3"
+          }
+        },
+        {
+          "client_id": "745313133101-1qa976560q5nu98q7c7erefbbar7svfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNmsvrHm4jd6v4KYx7nfMhRq2qlYVJELc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745313133101-1qa976560q5nu98q7c7erefbbar7svfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
