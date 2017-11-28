@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".HomePage"
+        <activity
+            android:name=".HomePage"
             android:label="TourSG">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,11 +22,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.tze.tourismapptwo.MyPreferenceActivity"
+            android:name=".MyPreferenceActivity"
             android:label="Preferences"
-            android:theme="@style/PreferencesThemeLight">
-        </activity>
-        <activity android:name=".SettingsActivity"
+            android:theme="@style/PreferencesThemeLight"></activity>
+        <activity
+            android:name=".SettingsActivity"
             android:label="Settings"
             android:parentActivityName=".HomePage">
             <meta-data
@@ -34,8 +35,8 @@
         </activity>
         <activity
             android:name=".ItineraryPage"
-            android:parentActivityName=".HomePage" >
-        </activity>
+            android:parentActivityName=".HomePage"></activity>
+        <activity android:name=".LocationSelectionPage"></activity>
     </application>
 
 </manifest>

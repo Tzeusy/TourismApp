@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/TourismAppTwo.iml" filepath="$PROJECT_DIR$/TourismAppTwo.iml" />
-      <module fileurl="file://D:\Documents\SUTD\SUTD 2017\Term 4\Introduction to Java\1D Android\TourismApp\TourismAppTwo\TourismAppTwo.iml" filepath="D:\Documents\SUTD\SUTD 2017\Term 4\Introduction to Java\1D Android\TourismApp\TourismAppTwo\TourismAppTwo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://D:\Documents\SUTD\SUTD 2017\Term 4\Introduction to Java\1D Android\TourismApp\TourismAppTwo\app\app.iml" filepath="D:\Documents\SUTD\SUTD 2017\Term 4\Introduction to Java\1D Android\TourismApp\TourismAppTwo\app\app.iml" />
     </modules>
   </component>
 </project>

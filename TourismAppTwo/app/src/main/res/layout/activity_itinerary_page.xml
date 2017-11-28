@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.tze.tourismapptwo.ItineraryPage">
 
     <TextView
@@ -11,4 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView" />
-</android.support.design.widget.CoordinatorLayout>
+
+    <Button
+        android:id="@+id/select_locations_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="selectLocationButtonListener"
+        android:text="Select Locations" />
+
+</android.widget.LinearLayout>

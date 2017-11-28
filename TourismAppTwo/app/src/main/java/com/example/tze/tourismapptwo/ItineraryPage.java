@@ -1,9 +1,14 @@
 package com.example.tze.tourismapptwo;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +38,6 @@ public class ItineraryPage extends AppCompatActivity {
         setContentView(R.layout.activity_itinerary_page);
 
         weatherTextView = (TextView) findViewById(R.id.weather_text_view);
-
         updateWeather();
     }
 
@@ -113,5 +117,11 @@ public class ItineraryPage extends AppCompatActivity {
             catch (IOException e) { Log.d(TAG, "IOException when converting InputStream to String: " + e.toString()); }
             return builder.toString();
         }
+    }
+
+    public void selectLocationButtonListener(View v) {
+        Context context = v.getContext();
+        Intent intent = new Intent(context, LocationSelectionPage.class);
+        startActivity(intent);
     }
 }
