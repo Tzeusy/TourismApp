@@ -58,7 +58,7 @@
             android:fontFamily="casual"
             android:textColor="#FFFFFF"
             android:layout_marginStart="165dp"
-            />
+            android:onClick="itineraryButtonListener" />
 
         <Button
             android:id="@+id/About"
@@ -87,8 +87,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="#30000000"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            />
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     </android.support.design.widget.AppBarLayout>
 

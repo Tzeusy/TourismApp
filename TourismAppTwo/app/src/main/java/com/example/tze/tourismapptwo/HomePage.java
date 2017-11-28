@@ -1,5 +1,6 @@
 package com.example.tze.tourismapptwo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,5 +23,11 @@ public class HomePage extends AppCompatActivity {
 //                startActivity(new Intent(HomePage.this,SettingsActivity.class));
 //            }
 //        });
+    }
+
+    public void itineraryButtonListener(View v) {
+        Context context = v.getContext();
+        Intent intent = new Intent(context, ItineraryPage.class);
+        startActivity(intent);
     }
 }
