@@ -5,7 +5,9 @@
         <item>@string/chinese</item>
         <item>@string/malay</item>
     </string-array>
-    <string-array name="save_language_list">langlist</string-array>
+    <string-array name="save_language_list"><item>@string/english</item>
+        <item>@string/chinese</item>
+        <item>@string/malay</item></string-array>
     <string name="chinese">Chinese</string>
     <string name="malay">Malay</string>
     <string name="english">English</string>

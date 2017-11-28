@@ -49,18 +49,18 @@ public class MyPreferenceActivity extends Activity {
                     String[] categories = information.split(",");
                     for(String s:categories){
                         Log.d("Please",s);
-                    }
-                    if(categories[0].contains("true")){
-                        nightmode=true;
-                    }
-                    if(categories[1].contains("true")){
-                        notifications=true;
-                    }
-                    if(categories[2].contains("Malay")){
-                        language="Malay";
-                    }
-                    else if(categories[2].contains("Chinese")){
-                        language="Chinese";
+                        if(s.contains("true")&&s.contains("night_mode")){
+                            nightmode=true;
+                        }
+                        if(s.contains("true")&&s.contains("notifications_setting")){
+                            notifications=true;
+                        }
+                        if(s.contains("Malay")){
+                            language="Malay";
+                        }
+                        else if(s.contains("Chinese")){
+                            language="Chinese";
+                        }
                     }
                 }
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
