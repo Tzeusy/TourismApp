@@ -44,6 +44,12 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void nearbyButtonListener(View v) {
+        Context context = v.getContext();
+        Intent intent = new Intent(context, NearbyActivity.class);
+        startActivity(intent);
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);

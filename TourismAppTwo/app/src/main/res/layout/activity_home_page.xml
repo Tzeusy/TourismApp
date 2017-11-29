@@ -25,29 +25,18 @@
             android:paddingStart="-230dp"
             app:srcCompat="@drawable/wallpaper" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            android:fontFamily="casual"
-            android:text="@string/welcome_to_singapore"
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textIsSelectable="true"
-            android:textSize="40sp" />
-
         <Button
             android:id="@+id/Nearby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="165dp"
             android:layout_marginTop="380dp"
-            android:textSize="18sp"
             android:background="#20000000"
             android:fontFamily="casual"
+            android:onClick="nearbyButtonListener"
             android:text="@string/nearby"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/Itinerary"
@@ -74,6 +63,18 @@
             android:textColor="#FFFFFF"
             android:layout_marginStart="165dp"
             />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:fontFamily="casual"
+            android:text="@string/welcome_to_singapore"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_light"
+            android:textIsSelectable="true"
+            android:textSize="40sp" />
     </FrameLayout>
 
     <android.support.design.widget.AppBarLayout

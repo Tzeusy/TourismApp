@@ -20,4 +20,9 @@
     <string name="defaultemail">\@mymail.sutd.edu.sg</string>
     <string name="requestemail">What is your email address?</string>
     <string name="status">Status</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="CurrentLocation">You are currently in </string>
+    <string name="maplocation">Singapore</string>
 </resources>

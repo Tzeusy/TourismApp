@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        tools:context=".MapLocationActivity" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchText"
+        android:layout_centerHorizontal="true"
+        android:text="@string/CurrentLocation"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:text="@string/maplocation"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="What places of significance would you like to see?" />
+
+    <CheckBox
+        android:id="@+id/ShoppingBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="18dp"
+        android:text="Shopping"
+        android:textSize="12sp" />
+
+    <CheckBox
+        android:id="@+id/MedicineBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ShoppingBox"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:text="Medicine"
+        android:textSize="12sp" />
+
+    <CheckBox
+        android:id="@+id/TransportBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/MedicineBox"
+        android:layout_alignBottom="@+id/MedicineBox"
+        android:layout_alignStart="@+id/LandmarksBox"
+        android:text="Transport"
+        android:textSize="12sp" />
+
+    <CheckBox
+        android:id="@+id/FoodBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/RecreBox"
+        android:layout_alignBottom="@+id/RecreBox"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/RecreBox"
+        android:text="Food"
+        android:textSize="12sp" />
+
+    <CheckBox
+        android:id="@+id/PetrolBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/GroceriesBox"
+        android:layout_alignBottom="@+id/GroceriesBox"
+        android:layout_alignStart="@+id/FoodBox"
+        android:text="Petrol"
+        android:textSize="12sp" />
+
+    <CheckBox
+        android:id="@+id/LandmarksBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/MedicineBox"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/ShoppingBox"
+        android:text="Landmarks"
+        android:textSize="12sp" />
+
+    <CheckBox
+        android:id="@+id/RecreBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/LandmarksBox"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/LandmarksBox"
+        android:text="Recreation"
+        android:textSize="11sp" />
+
+    <CheckBox
+        android:id="@+id/GroceriesBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TransportBox"
+        android:layout_alignBottom="@+id/TransportBox"
+        android:layout_alignStart="@+id/RecreBox"
+        android:text="Groceries"
+        android:textSize="12sp" />
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/map"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="Search Text Here..."
+        android:inputType="textPersonName"
+        android:textSize="12sp" />
+
+    <ImageButton
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/searchText"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/searchText"
+        android:background="#00000000"
+        android:onClick="onSearch"
+        android:paddingRight="50dp"
+        android:scaleX="1"
+        android:scaleY="1"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:background="#00000000">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#30000000"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/MyDarkToolbarStyle"
+
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+</RelativeLayout>
