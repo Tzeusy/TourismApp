@@ -73,4 +73,6 @@ public class LocationSelectionPage extends AppCompatActivity {
 
         return list;
     }
+
+
 }
