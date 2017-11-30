@@ -36,8 +36,7 @@ public class ItineraryPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itinerary_page);
-
-        weatherTextView = (TextView) findViewById(R.id.weather_text_view);
+        weatherTextView = (TextView)findViewById(R.id.weather_text_view);
         updateWeather();
     }
 
