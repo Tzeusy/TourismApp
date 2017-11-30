@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,30 +31,26 @@ public class ItineraryPage extends AppCompatActivity {
     private static final String TAG = "ITINERARY_ACTIVITY";
 
     private HashMap<String, String> weatherTags;
-    private TextView weatherTextView;
+    private TextView weatherTemperatureTextView;
+    private ImageView weatherIconImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itinerary_page);
-        weatherTextView = (TextView)findViewById(R.id.weather_text_view);
-        updateWeather();
+        weatherTemperatureTextView = (TextView)findViewById(R.id.weather_temperature_text_view);
+        weatherIconImageView = (ImageView)findViewById(R.id.weather_icon_image_view);
+
+        (new GetWeatherTask()).execute();
     }
 
-    private void updateWeather() {
-        URL url = null;
-
-        try { url = new URL("https://api.data.gov.sg/v1/environment/24-hour-weather-forecast"); }
-        catch (MalformedURLException e) { Log.d(TAG, "Unable to create URL: " + e.toString()); }
-
-        GetWeatherTask weatherTask = new GetWeatherTask();
-        weatherTask.execute(url);
-    }
-
-    private class GetWeatherTask extends AsyncTask<URL, Void, JSONObject> {
+    private class GetWeatherTask extends AsyncTask<Void, Void, JSONObject> {
         @Override
-        protected JSONObject doInBackground(URL... urls) {
-            URL url = urls[0];
+        protected JSONObject doInBackground(Void... args) {
+            URL url = null;
+            try { url = new URL("https://api.data.gov.sg/v1/environment/24-hour-weather-forecast"); }
+            catch (MalformedURLException e) { Log.d(TAG, "Unable to create URL: " + e.toString()); }
+
             JSONObject jsonObject = null;
             try {
                 String urlResponse = getUrlResponse(url);
@@ -71,10 +68,25 @@ public class ItineraryPage extends AppCompatActivity {
                 JSONObject general = jsonObject.getJSONArray("items").getJSONObject(0).getJSONObject("general");
                 String forecast = general.getString("forecast");
                 JSONObject temperature = general.getJSONObject("temperature");
-                String high = temperature.getString("high");
-                String low = temperature.getString("low");
+                Integer high = Integer.parseInt(temperature.getString("high"));
+                Integer low = Integer.parseInt(temperature.getString("low"));
 
-                weatherTextView.setText("Forecast: " + forecast + "\nHigh: " + high + "\tLow: " + low);
+                Log.d(TAG, "Forecast: " + forecast + "\nHigh: " + high + "\tLow: " + low);
+
+                Integer averageTemperature = (high + low)/2;
+                weatherTemperatureTextView.setText(averageTemperature.toString() + "°C");
+
+                // Thunder, Showers/Rain, Wind, Cloud, else
+                forecast = forecast.toLowerCase();
+                String filename;
+                if (forecast.contains("thunder")) filename = "weather_stormy";
+                else if (forecast.contains("showers") || forecast.contains("rain")) filename = "weather_rainy";
+                else if (forecast.contains("wind")) filename = "weather_windy";
+                else if (forecast.contains("cloud")) filename = "weather_cloudy";
+                else filename = "weather_sunny";
+                String packageName = getBaseContext().getPackageName();
+                int resID = getBaseContext().getResources().getIdentifier(filename, "drawable", packageName);
+                weatherIconImageView.setImageResource(resID);
             }
             catch (JSONException e) { Log.d(TAG, "Error when extracting JSON info: " + e.toString()); }
         }

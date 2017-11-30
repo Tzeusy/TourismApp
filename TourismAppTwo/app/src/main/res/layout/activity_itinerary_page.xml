@@ -7,17 +7,41 @@
     android:orientation="vertical"
     tools:context="com.example.tze.tourismapptwo.ItineraryPage">
 
-    <TextView
-        android:id="@+id/weather_text_view"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/select_locations_button"
+        <TextView
+            android:id="@+id/weather_temperature_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textAlignment="textEnd"
+            android:fontFamily="casual"
+            android:textSize="36dp" />
+
+        <ImageView
+            android:id="@+id/weather_icon_image_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="selectLocationButtonListener"
-        android:text="Select Locations" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/select_locations_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="selectLocationButtonListener"
+            android:text="Select Locations" />
+    </LinearLayout>
 
 </android.widget.LinearLayout>

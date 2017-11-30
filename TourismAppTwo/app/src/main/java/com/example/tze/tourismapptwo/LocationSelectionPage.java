@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +38,8 @@ public class LocationSelectionPage extends AppCompatActivity {
 
     private static final String TAG = "LOC_SEL_ACTIVITY";
 
+    public static ImageView locationImageView;
+    public static TextView locationHeaderTextView;
     public static TextView locationDataTextView;
     private RecyclerView locationRecyclerView;
     private LocationAdapter locationAdapter;
@@ -44,42 +50,21 @@ public class LocationSelectionPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_selection_page);
 
+        locationImageView = (ImageView)findViewById(R.id.location_image_view);
+        locationHeaderTextView = (TextView)findViewById(R.id.location_header_text_view);
         locationDataTextView = (TextView)findViewById(R.id.location_data_text_view);
 
+        // doing RecyclerView things
         locations = getLocationsFromAssets();
         locationRecyclerView = (RecyclerView)findViewById(R.id.location_recycler_view);
         locationAdapter = new LocationAdapter(this, locations);
         locationRecyclerView.setAdapter(locationAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         locationRecyclerView.setLayoutManager(layoutManager);
+        // this part adds a lined divider between each item
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(locationRecyclerView.getContext(), layoutManager.getOrientation());
+        dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.location_recycler_view_divider));
         locationRecyclerView.addItemDecoration(dividerItemDecoration);
-
-        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        /*
-        LinearLayout layout = findViewById(R.id.location_selection_layout);
-        ArrayList<String> locations = getLocationsFromAssets();
-        for (String location: locations) {
-            CheckBox checkBox = new CheckBox(this);
-            checkBox.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-            checkBox.setText(location);
-            checkBox.setChecked(prefs.getBoolean(location, false));
-            checkBox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    CheckBox checkBox = (CheckBox)v;
-                    String location = checkBox.getText().toString();
-                    SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-                    SharedPreferences.Editor editor = prefs.edit();
-                    editor.putBoolean(location, checkBox.isChecked());
-                    editor.commit();
-
-                    if (checkBox.isChecked()) (new GetWikipediaTask()).execute(location);
-                }
-            });
-            layout.addView(checkBox);
-        }
-        */
     }
 
     private ArrayList<String> getLocationsFromAssets() {
@@ -102,5 +87,4 @@ public class LocationSelectionPage extends AppCompatActivity {
 
         return list;
     }
-
 }
