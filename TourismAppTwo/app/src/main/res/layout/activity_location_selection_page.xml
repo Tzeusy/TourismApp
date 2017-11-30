@@ -10,21 +10,19 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="2">
 
-        <LinearLayout
-            android:id="@+id/location_selection_layout"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/location_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-        </LinearLayout>
     </ScrollView>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="3"
         android:background="#20000000"
         android:orientation="vertical" >
 
@@ -32,13 +30,15 @@
             android:id="@+id/location_image_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/gbtb" />
+            />
 
         <TextView
             android:id="@+id/location_data_text_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"
+            android:textSize="20dp"
+            android:text="Location information"
             android:textColor="@android:color/background_light" />
 
     </FrameLayout>

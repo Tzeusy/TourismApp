@@ -5,6 +5,9 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -31,7 +34,10 @@ public class LocationSelectionPage extends AppCompatActivity {
 
     private static final String TAG = "LOC_SEL_ACTIVITY";
 
-    TextView locationDataTextView;
+    public static TextView locationDataTextView;
+    private RecyclerView locationRecyclerView;
+    private LocationAdapter locationAdapter;
+    private ArrayList<String> locations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,17 @@ public class LocationSelectionPage extends AppCompatActivity {
 
         locationDataTextView = (TextView)findViewById(R.id.location_data_text_view);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        locations = getLocationsFromAssets();
+        locationRecyclerView = (RecyclerView)findViewById(R.id.location_recycler_view);
+        locationAdapter = new LocationAdapter(this, locations);
+        locationRecyclerView.setAdapter(locationAdapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        locationRecyclerView.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(locationRecyclerView.getContext(), layoutManager.getOrientation());
+        locationRecyclerView.addItemDecoration(dividerItemDecoration);
+
+        //SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        /*
         LinearLayout layout = findViewById(R.id.location_selection_layout);
         ArrayList<String> locations = getLocationsFromAssets();
         for (String location: locations) {
@@ -63,6 +79,7 @@ public class LocationSelectionPage extends AppCompatActivity {
             });
             layout.addView(checkBox);
         }
+        */
     }
 
     private ArrayList<String> getLocationsFromAssets() {
@@ -86,70 +103,4 @@ public class LocationSelectionPage extends AppCompatActivity {
         return list;
     }
 
-    private class GetWikipediaTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... locations) {
-            String location = locations[0];
-            String res = "";
-            try {
-                String urlString = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&redirects=1&titles=" + URLEncoder.encode(location, "UTF-8");
-                URL url = new URL(urlString);
-                String urlResponse = getUrlResponse(url);
-                JSONObject jsonObject = new JSONObject(urlResponse);
-                JSONObject pages = jsonObject.getJSONObject("query").getJSONObject("pages");
-                String key = pages.keys().next().toString();
-                JSONObject value = pages.getJSONObject(key); // j["query"]["pages"][key]
-                res = value.getString("title") + "\n" + value.getString("extract");
-            }
-            catch (UnsupportedEncodingException e) { Log.d(TAG, "Error when encoding location as URL: " + e.toString()); }
-            catch (MalformedURLException e) { Log.d(TAG, "Error when converting to URL: " + e.toString()); }
-            catch (JSONException e) {
-                res = location;
-                Log.d(TAG, "Error when converting " + location + " Wikipedia info to JSON: " + e.toString());
-            }
-            return res;
-        }
-
-        @Override
-        protected void onPostExecute(String extract) {
-            locationDataTextView.setText(extract);
-        }
-
-        private String getUrlResponse(URL url) {
-            InputStream inputStream = null;
-            HttpURLConnection conn = null;
-            String content = "";
-            try {
-                conn = (HttpURLConnection)url.openConnection();
-                conn.setReadTimeout(10000);
-                conn.setConnectTimeout(15000);
-                conn.connect();
-                Log.d(TAG, "HTTP response code: " + conn.getResponseCode());
-                inputStream = conn.getInputStream();
-                content = convertInputToString(inputStream);
-            }
-            catch (IOException e) { Log.d(TAG, "IOException when opening URL connection: " + e.toString()); }
-            finally {
-                conn.disconnect();
-                if (inputStream != null) {
-                    try { inputStream.close(); }
-                    catch (IOException e) { Log.d(TAG, "IOException when closing URL inputStream: " + e.toString()); }
-                }
-            }
-            return content;
-        }
-
-        private String convertInputToString(InputStream stream) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-            StringBuilder builder = new StringBuilder();
-            String s;
-            try {
-                while((s = reader.readLine()) != null) {
-                    builder.append(s).append('\n');
-                }
-            }
-            catch (IOException e) { Log.d(TAG, "IOException when converting InputStream to String: " + e.toString()); }
-            return builder.toString();
-        }
-    }
 }
