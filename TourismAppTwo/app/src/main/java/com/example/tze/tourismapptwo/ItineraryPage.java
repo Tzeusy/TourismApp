@@ -1,5 +1,6 @@
 package com.example.tze.tourismapptwo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,24 +28,58 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ItineraryPage extends AppCompatActivity {
 
     private static final String TAG = "ITINERARY_ACTIVITY";
 
-    private HashMap<String, String> weatherTags;
+    private ArrayList<String> selectedLocations;
     private TextView weatherTemperatureTextView;
     private ImageView weatherIconImageView;
+    private Spinner locationGenreSpinner;
+    private TextView locationCountTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_itinerary_page);
+
+        locationGenreSpinner = (Spinner)findViewById(R.id.location_genre_spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this, R.array.locations_genre_array, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        locationGenreSpinner.setAdapter(spinnerAdapter);
+        locationGenreSpinner.setOnItemSelectedListener(new LocationGenreSpinnerActivity());
+
         weatherTemperatureTextView = (TextView)findViewById(R.id.weather_temperature_text_view);
         weatherIconImageView = (ImageView)findViewById(R.id.weather_icon_image_view);
+        locationCountTextView = (TextView)findViewById(R.id.location_count_text_view);
 
+        updateSelectedLocations();
         (new GetWeatherTask()).execute();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateSelectedLocations();
+    }
+
+    private void updateSelectedLocations() {
+        String genre = locationGenreSpinner.getSelectedItem().toString();
+        Log.d(TAG, "Current spinner item: " + genre);
+        // use genre instead of selected_locations
+        SharedPreferences prefs = getBaseContext().getSharedPreferences("selected_locations", Context.MODE_PRIVATE);
+        Map<String,Boolean> map = (Map<String,Boolean>)prefs.getAll();
+
+        ArrayList<String> list = new ArrayList<>();
+        for (Map.Entry<String,Boolean> entry: map.entrySet()) {
+            if (entry.getValue()) list.add(entry.getKey());
+        }
+        selectedLocations = list;
+        locationCountTextView.setText("Locations selected " + selectedLocations.size());
     }
 
     private class GetWeatherTask extends AsyncTask<Void, Void, JSONObject> {
@@ -130,9 +168,20 @@ public class ItineraryPage extends AppCompatActivity {
         }
     }
 
+    private class LocationGenreSpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
+        public void onItemSelected(AdapterView parent, View view, int pos, long id) {
+            //String genre = (String)parent.getItemAtPosition(pos);
+            updateSelectedLocations();
+        }
+
+        public void onNothingSelected(AdapterView parent) {
+        }
+    }
+
     public void selectLocationButtonListener(View v) {
         Context context = v.getContext();
         Intent intent = new Intent(context, LocationSelectionPage.class);
+        intent.putExtra("genre", locationGenreSpinner.getSelectedItem().toString());
         startActivity(intent);
     }
 }

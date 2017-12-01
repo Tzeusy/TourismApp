@@ -39,7 +39,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     private ArrayList<String> locations;
     Context parentContext;
 
-    public LocationAdapter(Context context, ArrayList<String> locations) {
+    public LocationAdapter(Context context, ArrayList<String> locations, String genre) {
         parentContext = context;
         this.locations = locations;
     }
@@ -72,6 +72,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         LocationViewHolder(View v) {
             super(v);
 
+            // use genre instead of selected_locations
             prefs = v.getContext().getSharedPreferences("selected_locations", Context.MODE_PRIVATE);
 
             locationTextView = (TextView)v.findViewById(R.id.location_recycler_text_view);
@@ -104,12 +105,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         }
 
         private void updateLocationTextView(Boolean isSelected) {
-            if (isSelected) {
-                locationTextView.setBackgroundColor(Color.GRAY);
-            }
-            else {
-                locationTextView.setBackgroundColor(Color.LTGRAY);
-            }
+            locationTextView.setBackgroundColor(isSelected ? Color.GRAY : Color.LTGRAY);
         }
 
         private class GetWikipediaTask extends AsyncTask<String, Void, String> {
@@ -206,7 +202,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
             @Override
             protected void onPostExecute(Bitmap image) {
-                LocationSelectionPage.locationImageView.setImageBitmap(image);
+                if (image == null) LocationSelectionPage.locationImageView.setImageResource(R.drawable.default_location_image);
+                else LocationSelectionPage.locationImageView.setImageBitmap(image);
             }
 
             private String getUrlResponse(URL url) {

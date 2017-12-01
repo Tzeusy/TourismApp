@@ -44,6 +44,7 @@ public class LocationSelectionPage extends AppCompatActivity {
     private RecyclerView locationRecyclerView;
     private LocationAdapter locationAdapter;
     private ArrayList<String> locations;
+    private String genre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +55,11 @@ public class LocationSelectionPage extends AppCompatActivity {
         locationHeaderTextView = (TextView)findViewById(R.id.location_header_text_view);
         locationDataTextView = (TextView)findViewById(R.id.location_data_text_view);
 
+        genre = getIntent().getStringExtra("genre");
         // doing RecyclerView things
         locations = getLocationsFromAssets();
         locationRecyclerView = (RecyclerView)findViewById(R.id.location_recycler_view);
-        locationAdapter = new LocationAdapter(this, locations);
+        locationAdapter = new LocationAdapter(this, locations, genre);
         locationRecyclerView.setAdapter(locationAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         locationRecyclerView.setLayoutManager(layoutManager);
@@ -68,6 +70,9 @@ public class LocationSelectionPage extends AppCompatActivity {
     }
 
     private ArrayList<String> getLocationsFromAssets() {
+        /*
+        if (genre == "fun") filename="fun.txt";
+         */
         ArrayList<String> list = new ArrayList<>();
         BufferedReader reader = null;
         try {
