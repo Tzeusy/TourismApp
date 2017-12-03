@@ -27,6 +27,7 @@
     <string name="maplocation">Singapore</string>
 
     <string-array name="locations_genre_array">
+        <item>selected_locations</item>
         <item>Fun</item>
         <item>Not Fun</item>
         <item>Children</item>

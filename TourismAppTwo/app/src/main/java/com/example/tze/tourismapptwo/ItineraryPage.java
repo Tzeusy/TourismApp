@@ -71,7 +71,7 @@ public class ItineraryPage extends AppCompatActivity {
         String genre = locationGenreSpinner.getSelectedItem().toString();
         Log.d(TAG, "Current spinner item: " + genre);
         // use genre instead of selected_locations
-        SharedPreferences prefs = getBaseContext().getSharedPreferences("selected_locations", Context.MODE_PRIVATE);
+        SharedPreferences prefs = getBaseContext().getSharedPreferences(genre, Context.MODE_PRIVATE);
         Map<String,Boolean> map = (Map<String,Boolean>)prefs.getAll();
 
         ArrayList<String> list = new ArrayList<>();
@@ -139,7 +139,7 @@ public class ItineraryPage extends AppCompatActivity {
                 conn.setReadTimeout(10000);
                 conn.setConnectTimeout(15000);
                 conn.connect();
-                Log.d(TAG, "HTTP response code: " + conn.getResponseCode());
+                Log.d(TAG, "Weather API HTTP response code: " + conn.getResponseCode());
                 inputStream = conn.getInputStream();
                 content = convertInputToString(inputStream);
             }

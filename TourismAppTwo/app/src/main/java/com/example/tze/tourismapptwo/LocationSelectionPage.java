@@ -38,9 +38,9 @@ public class LocationSelectionPage extends AppCompatActivity {
 
     private static final String TAG = "LOC_SEL_ACTIVITY";
 
-    public static ImageView locationImageView;
-    public static TextView locationHeaderTextView;
-    public static TextView locationDataTextView;
+    private ImageView locationImageView;
+    private TextView locationHeaderTextView;
+    private TextView locationDataTextView;
     private RecyclerView locationRecyclerView;
     private LocationAdapter locationAdapter;
     private ArrayList<String> locations;
@@ -59,7 +59,7 @@ public class LocationSelectionPage extends AppCompatActivity {
         // doing RecyclerView things
         locations = getLocationsFromAssets();
         locationRecyclerView = (RecyclerView)findViewById(R.id.location_recycler_view);
-        locationAdapter = new LocationAdapter(this, locations, genre);
+        locationAdapter = new LocationAdapter(this, locations, genre, locationHeaderTextView, locationDataTextView, locationImageView);
         locationRecyclerView.setAdapter(locationAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         locationRecyclerView.setLayoutManager(layoutManager);
@@ -70,13 +70,13 @@ public class LocationSelectionPage extends AppCompatActivity {
     }
 
     private ArrayList<String> getLocationsFromAssets() {
-        /*
-        if (genre == "fun") filename="fun.txt";
-         */
+        String filename = "";
+        if (genre.equals("selected_locations")) filename = "sample_locations.txt";
+
         ArrayList<String> list = new ArrayList<>();
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open("sample_locations.txt")));
+            reader = new BufferedReader(new InputStreamReader(getAssets().open(filename)));
             String line;
             while((line = reader.readLine()) != null) {
                 list.add(line);

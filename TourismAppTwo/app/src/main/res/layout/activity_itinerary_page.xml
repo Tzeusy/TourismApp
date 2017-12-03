@@ -44,7 +44,7 @@
             <Spinner
                 android:id="@+id/location_genre_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="54dp"
                 android:layout_weight="1" />
 
             <TextView
@@ -54,6 +54,7 @@
                 android:layout_weight="1"
                 android:fontFamily="casual"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:text="Locations selected 0"
                 android:textSize="16sp" />
 

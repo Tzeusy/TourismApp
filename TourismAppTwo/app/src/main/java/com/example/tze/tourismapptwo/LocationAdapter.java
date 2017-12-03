@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -36,12 +37,22 @@ import java.util.concurrent.ExecutionException;
 public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.LocationViewHolder> {
 
     private static final String TAG = "LOCATION_ADAPTER";
-    private ArrayList<String> locations;
     Context parentContext;
+    private ArrayList<String> locations;
+    private String genre;
 
-    public LocationAdapter(Context context, ArrayList<String> locations, String genre) {
+    private TextView locationHeaderTextView;
+    private TextView locationDataTextView;
+    private ImageView locationImageView;
+
+    public LocationAdapter(Context context, ArrayList<String> locations, String genre, TextView locationHeaderTextView, TextView locationDataTextView, ImageView locationImageView) {
         parentContext = context;
         this.locations = locations;
+        this.genre = genre;
+
+        this.locationHeaderTextView = locationHeaderTextView;
+        this.locationDataTextView = locationDataTextView;
+        this.locationImageView = locationImageView;
     }
 
     @Override
@@ -51,7 +62,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         boolean shouldAttachToParentImmediately = false;
 
         View view = inflater.inflate(layoutIDForListItem, parent, shouldAttachToParentImmediately);
-        return new LocationViewHolder(view);
+        LocationViewHolder locationViewHolder = new LocationViewHolder(view);
+        locationViewHolder.setViews(locationHeaderTextView, locationDataTextView, locationImageView);
+        return locationViewHolder;
     }
 
     @Override
@@ -69,14 +82,22 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
         private SharedPreferences prefs;
         private TextView locationTextView;
 
+        private TextView locationHeaderTextView;
+        private TextView locationDataTextView;
+        private ImageView locationImageView;
+
         LocationViewHolder(View v) {
             super(v);
-
-            // use genre instead of selected_locations
-            prefs = v.getContext().getSharedPreferences("selected_locations", Context.MODE_PRIVATE);
+            prefs = v.getContext().getSharedPreferences(genre, Context.MODE_PRIVATE);
 
             locationTextView = (TextView)v.findViewById(R.id.location_recycler_text_view);
             locationTextView.setOnClickListener(this);
+        }
+
+        public void setViews(TextView locationHeaderTextView, TextView locationDataTextView, ImageView locationImageView) {
+            this.locationHeaderTextView = locationHeaderTextView;
+            this.locationDataTextView = locationDataTextView;
+            this.locationImageView = locationImageView;
         }
 
         public void bind(int position) {
@@ -95,8 +116,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
             editor.putBoolean(locationName, isSelected);
             editor.commit();
             // update gui
-            //updateLocationTextView(isSelected);
-            locationTextView.setBackgroundColor(isSelected ? Color.GRAY : Color.LTGRAY);
+            updateLocationTextView(isSelected);
             // update info entry
             if (isSelected) {
                 (new GetWikipediaTask()).execute(locationName);
@@ -136,8 +156,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
             @Override
             protected void onPostExecute(String extract) {
-                LocationSelectionPage.locationHeaderTextView.setText(location);
-                LocationSelectionPage.locationDataTextView.setText(extract);
+                locationHeaderTextView.setText(location);
+                locationDataTextView.setText(extract);
             }
 
             private String getUrlResponse(URL url) {
@@ -149,7 +169,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                     conn.setReadTimeout(10000);
                     conn.setConnectTimeout(15000);
                     conn.connect();
-                    Log.d(TAG, "HTTP response code: " + conn.getResponseCode());
+                    Log.d(TAG, "Wikipedia API HTTP response code: " + conn.getResponseCode());
                     inputStream = conn.getInputStream();
                     content = convertInputToString(inputStream);
                 }
@@ -202,8 +222,8 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
 
             @Override
             protected void onPostExecute(Bitmap image) {
-                if (image == null) LocationSelectionPage.locationImageView.setImageResource(R.drawable.default_location_image);
-                else LocationSelectionPage.locationImageView.setImageBitmap(image);
+                if (image == null) locationImageView.setImageResource(R.drawable.default_location_image);
+                else locationImageView.setImageBitmap(image);
             }
 
             private String getUrlResponse(URL url) {
@@ -216,7 +236,7 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                     conn.setReadTimeout(10000);
                     conn.setConnectTimeout(15000);
                     conn.connect();
-                    Log.d(TAG, "HTTP response code: " + conn.getResponseCode());
+                    Log.d(TAG, "Getty Image API HTTP response code: " + conn.getResponseCode());
                     inputStream = conn.getInputStream();
                     content = convertInputToString(inputStream);
                 }
