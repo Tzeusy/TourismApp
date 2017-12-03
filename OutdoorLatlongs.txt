@@ -1,0 +1,22 @@
+Bukit Timah Nature Reserve|1.3483925,103.7774628
+Central Catchment Nature Reserve|1.3551526,103.7972022
+East Coast Park|1.3007842,103.9121866
+Fort Canning Park|1.2941149,103.8463071
+Gardens by the Bay|1.2815683,103.8636132
+HortPark|1.2787362,103.8018322
+Jurong Bird Park|1.3187065,103.7064417
+Kusu Island|1.2232435,103.8611194
+Mandai Orchid Gardens|1.4071116,103.7845357
+Marina Barrage|1.2805281,103.8711746
+Merlion Park|1.2867892,103.8545014
+Mount Faber Park|1.2737864,103.8174964
+National Orchid Garden|1.3116834,103.8149013
+Pulau Ubin|1.4125659,103.9577334
+Singapore Botanic Gardens|1.3138397,103.8159136
+Singapore Butterfly and Insect Kingdom|1.2554495,103.8168035
+Singapore Night Safari|1.4021872,103.7880606
+Singapore Zoo|1.4043485,103.793023
+Sisters' Islands|1.2146211,103.8350308
+Sungei Buloh Nature Park|1.4467195,103.7301489
+The Southern Ridges|1.2801016,103.8029949
+Treetop Walk at MacRitche Reservoir|1.3607287,103.8125215

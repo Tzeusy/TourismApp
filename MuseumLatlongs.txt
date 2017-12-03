@@ -1,0 +1,11 @@
+ArtScience Museum|1.2862738,103.8592663
+Asian Civilisation Museum|1.2874969,103.8513861
+Changi Prison Chapel and Museum|1.3621204,103.9740344
+Images of Singapore|1.2540472,103.8176064
+Istana|1.306996,103.8430853
+Malay Heritage Centre|1.30275,103.8600008
+National Museum of Singapore|1.2966375,103.8486646
+Peranakan Museum|1.2943669,103.8490391
+Red Dot Design Museum|1.280147,103.8563214
+Singapore Art Museum|1.2973072,103.8510615
+Singapore Philatelic Museum|1.2928447,103.8487025
