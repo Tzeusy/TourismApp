@@ -2,6 +2,7 @@ package com.example.tze.tourismapptwo;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Tze on 4/12/2017.
@@ -35,10 +36,27 @@ public class BruteForceSolver {
         final ArrayList<Location> restorePoint = listLocationsToVisit;
         double[] bestSoFar = new double[]{99999,99999,0};
         for(Location nextDestination:restorePoint){
-            try{
-                //now we get the time and cost for this rabbit hole
-                double timeSoFar = soFar[0] + currLocation.travelTimes.get(nextDestination);
-                double costSoFar = soFar[1] + currLocation.travelCosts.get(nextDestination);
+            //we have our next Destination
+            //now we get the time and cost for this rabbit hole - through 3 possible paths
+            for(int i=0;i<3;i++){
+                final ArrayList<Location> restorePointTwo = listLocationsToVisit;
+                double timeSoFar;
+                double costSoFar;
+                if(i==0){
+                    //Cabbing
+                    timeSoFar = soFar[0] + currLocation.travelTimesTaxi.get(nextDestination);
+                    costSoFar = soFar[1] + currLocation.travelCostsTaxi.get(nextDestination);
+                }
+                else if(i==1){
+                    //Training
+                    timeSoFar = soFar[0] + currLocation.travelTimesPublicT.get(nextDestination);
+                    costSoFar = soFar[1] + currLocation.travelCostsPublicT.get(nextDestination);
+                }
+                else{
+                    timeSoFar = soFar[0] + currLocation.travelTimesWalking.get(nextDestination);
+                    //walking is free
+                    costSoFar = soFar[1];
+                }
                 double stepSoFar = soFar[2] + 1;
                 //Assembling all three in one double[] for the next recursive iteration
                 double[] toFeed = new double[]{timeSoFar,costSoFar,stepSoFar};
@@ -58,9 +76,6 @@ public class BruteForceSolver {
                 else{
                     bestSoFar = routeTimeAndCost;
                 }
-            }
-            catch(Exception ex){
-                return bestSoFar;
             }
             listLocationsToVisit=restorePoint;
         }
