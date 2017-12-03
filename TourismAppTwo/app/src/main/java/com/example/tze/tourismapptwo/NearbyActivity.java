@@ -60,36 +60,37 @@ public class NearbyActivity extends AppCompatActivity
     double mylongitude;
 
     ArrayList<CheckBox> checkBoxStatuses = new ArrayList<>();
-    private int PROXIMITY_RADIUS = 1000;
+    private int PROXIMITY_RADIUS = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_nearby);
+        super.setTheme(R.style.PreferencesThemeLight);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
         myToolbar.setTitleTextColor(Color.parseColor("#FFFFFF"));
 
-        getSupportActionBar().setTitle("Map Location Activity");
-
+        getSupportActionBar().setTitle("Nearby Locations of Significance");
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFrag.getMapAsync(this);
         CheckBox ShoppingBox = findViewById(R.id.ShoppingBox);
-        CheckBox MedicineBox = findViewById(R.id.MedicineBox);
+//        CheckBox MedicineBox = findViewById(R.id.MedicineBox);
         CheckBox FoodBox = findViewById(R.id.FoodBox);
-        CheckBox PetrolBox = findViewById(R.id.PetrolBox);
+//        CheckBox PetrolBox = findViewById(R.id.PetrolBox);
         CheckBox TransportBox = findViewById(R.id.TransportBox);
         CheckBox GroceriesBox = findViewById(R.id.GroceriesBox);
         CheckBox LandmarksBox = findViewById(R.id.LandmarksBox);
         CheckBox RecreBox = findViewById(R.id.RecreBox);
 
         checkBoxStatuses.add(ShoppingBox);
-        checkBoxStatuses.add(MedicineBox);
+//        checkBoxStatuses.add(MedicineBox);
         checkBoxStatuses.add(FoodBox);
-        checkBoxStatuses.add(PetrolBox);
+//        checkBoxStatuses.add(PetrolBox);
         checkBoxStatuses.add(TransportBox);
         checkBoxStatuses.add(GroceriesBox);
         checkBoxStatuses.add(LandmarksBox);
@@ -101,41 +102,79 @@ public class NearbyActivity extends AppCompatActivity
             x.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String s = "";
+                    String[] s = new String[]{" "," "," "," "," "," "," "," "," "," "};
                     if(x.toString().contains("Shopping")){
-                        s="shopping_mall";
+                        s[0]="shopping_mall";
+                        s[1]="department_store";
+                        s[2]="jewelry_store";
+                        s[3]="book_store";
+                        s[4]="clothing_store";
+                        s[5]="electronics_store";
+                        s[6]="hardware_store";
+                        s[7]="department_store";
                     }
                     else if(x.toString().contains("Medicine")){
-                        s="pharmacy";
+                        s[0]="hospital";
+                        s[1]="pharmacy";
+                        s[2]="doctor";
                     }
                     else if(x.toString().contains("Petrol")){
-                        s="gas_station";
+                        s[0]="gas_station";
                     }
                     else if(x.toString().contains("Food")){
-                        s="restaurant";
+                        s[0]="restaurant";
+                        s[1]="bar";
+                        s[2]="cafe";
+                        s[3]="meal_delivery";
+                        s[4]="meal_takeaway";
                     }
                     else if(x.toString().contains("Transport")){
-                        s="train_station";
+                        s[0]="train_station";
+                        s[1]="bus_station";
+                        s[2]="taxi_stand";
+                        s[3]="subway_station";
+                        s[4]="transit_station";
+                        s[5]="subway_station";
+                        s[6]="car_dealer";
                     }
                     else if(x.toString().contains("Groceries")){
-                        s="store";
+                        s[0]="convenience_store";
+                        s[1]="home_goods_store";
+                        s[2]="store";
+                        s[3]="shopping_mall";
                     }
                     else if(x.toString().contains("Landmark")){
-                        s="museum";
+                        s[0]="museum";
+                        s[1]="art_gallery";
+                        s[2]="aquarium";
+                        s[3]="library";
+                        s[4]="city_hall";
+                        s[5]="stadium";
                     }
                     else if(x.toString().contains("Recre")){
-                        s="movie_rental";
+                        s[0]="amusement_park";
+                        s[1]="spa";
+                        s[2]="stadium";
+                        s[3]="gym";
+                        s[4]="night_club";
+                        s[5]="casino";
+                        s[6]="movie_theater";
+                        s[7]="bowling_alley";
                     }
                     if(x.isChecked()){
-                        Log.d("Please",x.getId()+" is checked");
-                        String url = getUrl(mylatitude, mylongitude, s);
-                        Object[] DataTransfer = new Object[2];
-                        DataTransfer[0] = mGoogleMap;
-                        DataTransfer[1] = url;
-                        Log.d("onClick", url);
-                        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
-                        getNearbyPlacesData.execute(DataTransfer);
-                        Toast.makeText(NearbyActivity.this,s, Toast.LENGTH_LONG).show();
+                        int count=0;
+                        for(String m:s){
+                            if(m.equals(" ")) break;
+                            String url = getUrl(mylatitude, mylongitude, m);
+                            Object[] DataTransfer = new Object[3];
+                            DataTransfer[0] = mGoogleMap;
+                            DataTransfer[1] = url;
+                            DataTransfer[2] = count;
+                            Log.d("onClick", url);
+                            GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+                            getNearbyPlacesData.execute(DataTransfer);
+                            count+=1;
+                        }
                     }else{
                         mGoogleMap.clear();
                         Log.d("Please",x.toString()+" is unchecked");
@@ -179,7 +218,9 @@ public class NearbyActivity extends AppCompatActivity
                 marker.title("Address "+String.valueOf(i));
                 marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                 mGoogleMap.addMarker(marker);
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,13));
             }
+
         }
     }
 

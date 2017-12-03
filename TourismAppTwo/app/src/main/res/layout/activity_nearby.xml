@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:label="Location Searcher and Identifier"
+    android:theme="@style/PreferencesThemeDark"
     android:orientation="vertical">
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,6 +14,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="275dp"
+        android:layout_marginTop="55dp"
         tools:context=".MapLocationActivity" />
 
     <TextView
@@ -47,70 +50,55 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView3"
-        android:layout_marginLeft="5dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="18dp"
         android:text="Shopping"
-        android:textSize="12sp" />
-
-    <CheckBox
-        android:id="@+id/MedicineBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/ShoppingBox"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="15dp"
-        android:text="Medicine"
+        android:textColor="@color/white"
+        android:textColorLink="@color/white"
         android:textSize="12sp" />
 
     <CheckBox
         android:id="@+id/TransportBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/MedicineBox"
-        android:layout_alignBottom="@+id/MedicineBox"
-        android:layout_alignStart="@+id/LandmarksBox"
+        android:layout_alignStart="@+id/ShoppingBox"
+        android:layout_below="@+id/ShoppingBox"
+        android:layout_marginTop="10dp"
         android:text="Transport"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:theme="@style/MyDarkCheckBoxStyle" />
 
     <CheckBox
         android:id="@+id/FoodBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/RecreBox"
-        android:layout_alignBottom="@+id/RecreBox"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/RecreBox"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/RecreBox"
+        android:paddingRight="51dp"
         android:text="Food"
-        android:textSize="12sp" />
-
-    <CheckBox
-        android:id="@+id/PetrolBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/GroceriesBox"
-        android:layout_alignBottom="@+id/GroceriesBox"
-        android:layout_alignStart="@+id/FoodBox"
-        android:text="Petrol"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:theme="@style/MyDarkCheckBoxStyle" />
 
     <CheckBox
         android:id="@+id/LandmarksBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/MedicineBox"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/ShoppingBox"
+        android:layout_alignBaseline="@+id/ShoppingBox"
+        android:layout_alignBottom="@+id/ShoppingBox"
+        android:layout_marginLeft="40dp"
+        android:layout_toEndOf="@+id/TransportBox"
         android:text="Landmarks"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:theme="@style/MyDarkCheckBoxStyle" />
 
     <CheckBox
         android:id="@+id/RecreBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/LandmarksBox"
-        android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/LandmarksBox"
+        android:layout_alignBaseline="@+id/TransportBox"
+        android:layout_alignBottom="@+id/TransportBox"
+        android:layout_marginLeft="43dp"
+        android:layout_toEndOf="@+id/ShoppingBox"
         android:text="Recreation"
         android:textSize="11sp" />
 
@@ -118,9 +106,10 @@
         android:id="@+id/GroceriesBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TransportBox"
-        android:layout_alignBottom="@+id/TransportBox"
-        android:layout_alignStart="@+id/RecreBox"
+        android:layout_alignBaseline="@+id/LandmarksBox"
+        android:layout_alignBottom="@+id/LandmarksBox"
+        android:layout_alignEnd="@+id/FoodBox"
+        android:paddingRight="25dp"
         android:text="Groceries"
         android:textSize="12sp" />
 
@@ -132,7 +121,10 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint="Search Text Here..."
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:inputType="textPersonName"
+        android:paddingTop="20dp"
         android:textSize="12sp" />
 
     <ImageButton

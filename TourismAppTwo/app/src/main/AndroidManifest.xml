@@ -50,9 +50,13 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".NearbyActivity"></activity>
+        <activity
+            android:name=".NearbyActivity"
+            android:label="Nearby and Location filters">
+        </activity>
         <activity
             android:name=".LocationSelectionPage"
+
             android:windowSoftInputMode="adjustNothing" >
         </activity>
 
