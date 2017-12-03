@@ -1,12 +1,15 @@
 ,ArtScience Museum,Asian Civilisation Museum,Changi Prison Chapel and Museum,Images of Singapore,Istana,Malay Heritage Centre,National Museum of Singapore,Peranakan Museum,Red Dot Design Museum,Singapore Art Museum,Singapore Philatelic Museum
-ArtScience Museum,0,1179,4546,3127,2706,1746,1712,1856,555,1698,1529
-Asian Civilisation Museum,1188,0,4431,2224,2085,1598,1105,856,995,1169,732
-Changi Prison Chapel and Museum,4498,4555,0,5142,4797,3893,0,3934,4141,3660,4045
-Images of Singapore,2653,2052,5023,0,2469,2827,0,2147,2406,2130,2023
-Istana,2520,1942,4738,2481,0,2331,1263,1756,2122,1338,1797
-Malay Heritage Centre,1718,1581,4840,2978,2482,0,1397,1632,1456,1276,1543
-National Museum of Singapore,1597,1001,0,0,1338,1378,0,295,1809,274,406
-Peranakan Museum,1800,772,3977,2243,1886,1611,316,0,1556,359,170
-Red Dot Design Museum,555,991,4176,2450,2262,1483,1914,1584,0,1328,1576
-Singapore Art Museum,1696,1093,3706,2247,1443,1481,295,365,1339,0,476
-Singapore Philatelic Museum,1444,638,5199,2109,1871,1520,418,161,1539,461,0
+ArtScience Museum,0,0.5895,2.273,1.5635,1.353,0.873,0.856,0.928,0.2775,0.849,0.7645
+Asian Civilisation Museum,0.594,0,2.2155,1.112,1.0425,0.799,0.5525,0.428,0.4975,0.5845,0.366
+Changi Prison Chapel and Museum,2.249,2.2775,0,2.571,2.3985,1.9465,0,1.967,2.0705,1.83,2.0225
+Images of Singapore,1.3265,1.026,2.5115,0,1.2345,1.4135,0,1.0735,1.203,1.065,1.0115
+Istana,1.26,0.971,2.369,1.2405,0,1.1655,0.6315,0.878,1.061,0.669,0.8985
+Malay Heritage Centre,0.859,0.7905,2.42,1.489,1.241,0,0.6985,0.816,0.728,0.638,0.7715
+National Museum of Singapore,0.7985,0.5005,0,0,0.669,0.689,0,0.1475,0.9045,0.137,0.203
+Peranakan Museum,0.9,0.386,1.9885,1.1215,0.943,0.8055,0.158,0,0.778,0.1795,0.085
+Red Dot Design Museum,0.2775,0.4955,2.088,1.225,1.131,0.7415,0.957,0.792,0,0.664,0.788
+Singapore Art Museum,0.848,0.5465,1.853,1.1235,0.7215,0.7405,0.1475,0.1825,0.6695,0,0.238
+Singapore Philatelic Museum,0.722,0.319,2.5995,1.0545,0.9355,0.76,0.209,0.0805,0.7695,0.2305,0
+,,,,,,,,,,,
+,,,,,,,,,,,
+,,,,,,,0.0005,,,,
