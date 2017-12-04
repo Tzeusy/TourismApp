@@ -101,9 +101,11 @@ public class ItineraryPage extends AppCompatActivity {
         }
         ArrayList<Location> locationsToFind = new ArrayList<>();
         for (String s: parser.getLocationsFromAssets("Entertainment")) locationsToFind.add(entertainmentLocations.get(s));
-        BruteForceSolver solver = new BruteForceSolver();
-        solver.fastestRoute(locationsToFind.get(0), locationsToFind.get(0), locationsToFind);
-        Log.d("TAZDINGO", solver.getOptimalRoute().toString());
+        //BruteForceSolver solver = new BruteForceSolver();
+        //solver.fastestRoute(locationsToFind.get(0), locationsToFind.get(0), locationsToFind);
+        //Log.d("TAZDINGO", solver.getOptimalRoute().toString());
+        ArrayList<LocationEdge> smartRoute = SmartSolver.solve(locationsToFind.get(0), locationsToFind.get(0), locationsToFind, 20.0);
+        SmartSolver.printRoute(smartRoute);
     }
 
     private class GetWeatherTask extends AsyncTask<Void, Void, JSONObject> {
