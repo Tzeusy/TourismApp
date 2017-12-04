@@ -9,8 +9,8 @@ public class Location {
     public HashMap<Location,Integer> travelTimesPublicT=null;
     public HashMap<Location, Double> travelCostsPublicT=null;
     public HashMap<Location,Integer> travelTimesWalking=null;
-    private Location location=null;
-    public Location(Location location,
+    private String location=null;
+    public Location(String location,
                     HashMap<Location,Integer> travelTimesTaxi, HashMap<Location,Double> travelCostsTaxi,
                     HashMap<Location,Integer> travelTimesPublicT, HashMap<Location,Double> travelCostsPublicT,
                     HashMap<Location,Integer> travelTimesWalking){
@@ -23,7 +23,7 @@ public class Location {
     }
     //Are there issues here with circular logic? Like, I need locations to be defined before I can build Locations with HashMaps?
     //Made a blank constructor in case the above is the case.
-    public Location(Location location){
+    public Location(String location){
         this.location=location;
     }
 }
