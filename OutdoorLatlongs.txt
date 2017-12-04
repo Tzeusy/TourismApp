@@ -20,3 +20,4 @@ Sisters' Islands|1.2146211,103.8350308
 Sungei Buloh Nature Park|1.4467195,103.7301489
 The Southern Ridges|1.2801016,103.8029949
 Treetop Walk at MacRitche Reservoir|1.3607287,103.8125215
+Marina Bay Sand|1.2845442,103.8595898

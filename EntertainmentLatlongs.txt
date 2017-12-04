@@ -1,5 +1,5 @@
 Esplanade - Theatres on the Bay|1.2897934,103.8558166
-Geylanf Serai Market|1.3167284,103.8982767
+Geylang Serai Market|1.3167284,103.8982767
 G-Max Reverse Bungy|1.2905036,103.8466627
 Haw Par Villa|1.2835657,103.7816432
 House of Tan Teng Niah|1.307168,103.850992
@@ -21,3 +21,4 @@ The Padang|1.2905564,103.8530438
 Underwater World Singapore Pte Ltd|1.258183,103.811225
 Universal Studios Singapore|1.2540421,103.8238084
 Wonder Full at Marina Bay Sands|1.2842083,103.8582327
+Marina Bay Sands|1.2845442,103.8595898
