@@ -1,11 +1,15 @@
 package com.example.tze.tourismapptwo;
 
+import android.content.Context;
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +19,35 @@ import java.util.List;
  */
 
 public class DataParser {
+    private static final String TAG = "DATA_PARSER";
+
+    public static ArrayList<String> getLocationsFromAssets(Context context, String genre) {
+        String filename = "sample_locations.txt";
+        if (genre.equals(Location.Genre.ENTERTAINMENT)) filename = "locations_entertainment.txt";
+        else if (genre.equals(Location.Genre.FOOD)) filename = "locations_food.txt";
+        else if (genre.equals(Location.Genre.MUSEUM)) filename = "locations_museum.txt";
+        else if (genre.equals(Location.Genre.OUTDOOR)) filename = "locations_outdoor.txt";
+        else if (genre.equals(Location.Genre.PLACEOFWORSHIP)) filename = "locations_placeofworship.txt";
+
+        ArrayList<String> list = new ArrayList<>();
+        BufferedReader reader = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(context.getAssets().open(filename)));
+            String line;
+            while((line = reader.readLine()) != null) {
+                list.add(line);
+            }
+        }
+        catch (IOException e) { Log.d(TAG, "Error retrieving locations from assets: " + e.toString()); }
+        finally {
+            if (reader != null) {
+                try { reader.close(); }
+                catch (IOException e) { Log.d(TAG, "Error closing location reader: " + e.toString()); }
+            }
+        }
+        return list;
+    }
+
     public List<HashMap<String, String>> parse(String jsonData) {
         JSONArray jsonArray = null;
         JSONObject jsonObject;

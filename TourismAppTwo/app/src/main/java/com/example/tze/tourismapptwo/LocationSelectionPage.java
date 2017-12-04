@@ -57,7 +57,8 @@ public class LocationSelectionPage extends AppCompatActivity {
 
         genre = getIntent().getStringExtra("genre");
         // doing RecyclerView things
-        locations = (new CsvParser(getBaseContext())).getLocationsFromAssets(genre);
+        locations = DataParser.getLocationsFromAssets(getBaseContext(), genre);
+        locations.remove("Marina Bay Sands");
         locationRecyclerView = (RecyclerView)findViewById(R.id.location_recycler_view);
         locationAdapter = new LocationAdapter(this, locations, genre, locationHeaderTextView, locationDataTextView, locationImageView);
         locationRecyclerView.setAdapter(locationAdapter);
@@ -68,6 +69,4 @@ public class LocationSelectionPage extends AppCompatActivity {
         dividerItemDecoration.setDrawable(getApplicationContext().getResources().getDrawable(R.drawable.location_recycler_view_divider));
         locationRecyclerView.addItemDecoration(dividerItemDecoration);
     }
-
-
 }

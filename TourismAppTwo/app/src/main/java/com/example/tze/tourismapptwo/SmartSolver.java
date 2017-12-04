@@ -26,7 +26,6 @@ public class SmartSolver {
 
     private static ArrayList<LocationEdge> solve(Location sourceLocation, Location destLocation, ArrayList<Location> locationsToVisit) {
         ArrayList<LocationEdge> initialRandomSolution = getInitialRandomSolution(sourceLocation, destLocation, locationsToVisit);
-        printRoute(initialRandomSolution);
 
         ArrayList<LocationEdge> bestSolution = initialRandomSolution;
         ArrayList<LocationEdge> currentSolution = initialRandomSolution;
@@ -112,15 +111,20 @@ public class SmartSolver {
         return total;
     }
 
-    public static void printRoute(ArrayList<LocationEdge> route) {
-        String s = route.get(0).sourceLocation.toString();
-        for (int i=1; i<route.size(); i++) {
+    public static String routeToString(ArrayList<LocationEdge> route) {
+        String s = "";
+        for (int i=0; i<route.size(); i++) {
             LocationEdge edge = route.get(i);
-            s+= "\n (" + edge.travelType.toString() + ") ";
-            s+= edge.destLocation.toString();
+            String travelInstruction;
+            if (edge.travelType == TravelType.PUBLIC_TRANSPORT) travelInstruction = "Then take public transportation to: \t";
+            else if (edge.travelType == TravelType.TAXI) travelInstruction = "Then take a cab to: \t";
+            else travelInstruction = "Then walk to: \t";
+
+            s+= edge.sourceLocation.toString();
+            s+= "\n" + travelInstruction;
         }
-        Log.d(TAG, s);
-        Log.d(TAG, "Total travelling duration: " + computeWeight(route,COMPUTE_TRAVEL_DURATION) + " Total cost: " + computeWeight(route,COMPUTE_TRAVEL_COST));
+        s+= route.get(route.size()-1).destLocation.toString();
+        return s;
     }
 
     private static TravelType getRandomTravelType() { return TravelType.values()[r.nextInt(TravelType.values().length)]; }

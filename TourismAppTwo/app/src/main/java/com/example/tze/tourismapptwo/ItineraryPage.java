@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,9 +28,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class ItineraryPage extends AppCompatActivity {
 
@@ -40,6 +39,13 @@ public class ItineraryPage extends AppCompatActivity {
     private ImageView weatherIconImageView;
     private Spinner locationGenreSpinner;
     private TextView locationCountTextView;
+    private TextView itineraryTextView;
+
+    private HashMap<String,Location> entertainmentLocations;
+    private HashMap<String,Location> foodLocations;
+    private HashMap<String,Location> museumLocations;
+    private HashMap<String,Location> outdoorLocations;
+    private HashMap<String,Location> placeOfWorshipLocations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,7 @@ public class ItineraryPage extends AppCompatActivity {
         weatherTemperatureTextView = (TextView)findViewById(R.id.weather_temperature_text_view);
         weatherIconImageView = (ImageView)findViewById(R.id.weather_icon_image_view);
         locationCountTextView = (TextView)findViewById(R.id.location_count_text_view);
+        itineraryTextView = (TextView)findViewById(R.id.itinerary_text_view);
 
         updateSelectedLocations();
         parseAllCsv();
@@ -69,7 +76,6 @@ public class ItineraryPage extends AppCompatActivity {
 
     private void updateSelectedLocations() {
         String genre = locationGenreSpinner.getSelectedItem().toString();
-        Log.d(TAG, "Current spinner item: " + genre);
         // use genre instead of selected_locations
         SharedPreferences prefs = getBaseContext().getSharedPreferences(genre, Context.MODE_PRIVATE);
         Map<String,Boolean> map = (Map<String,Boolean>)prefs.getAll();
@@ -88,24 +94,99 @@ public class ItineraryPage extends AppCompatActivity {
         // distance.csv == Location.travelCosts, time.csv == Location.travelTimes
         // entertainment
         HashMap<String,Location> entertainmentLocations = new HashMap<>();
-        for (String loc: parser.getLocationsFromAssets("Entertainment")) entertainmentLocations.put(loc, new Location(loc));
+        for (String loc: DataParser.getLocationsFromAssets(getBaseContext(), Location.Genre.ENTERTAINMENT)) entertainmentLocations.put(loc, new Location(loc));
 
-        HashMap<String,HashMap<Location,Double>> entertainmentPublicTCost = parser.parse(R.raw.entertainment_bus_distance, entertainmentLocations);
+        HashMap<String,HashMap<Location,Double>> entertainmentPublicTCost = parser.parse(R.raw.entertainment_bus_cost, entertainmentLocations);
         HashMap<String,HashMap<Location,Double>> entertainmentPublicTTime = parser.parse(R.raw.entertainment_bus_time, entertainmentLocations);
-        HashMap<String,HashMap<Location,Double>> entertainmentTaxiCost = parser.parse(R.raw.entertainment_taxi_distance, entertainmentLocations);
+        HashMap<String,HashMap<Location,Double>> entertainmentTaxiCost = parser.parse(R.raw.entertainment_taxi_cost, entertainmentLocations);
         HashMap<String,HashMap<Location,Double>> entertainmentTaxiTime = parser.parse(R.raw.entertainment_taxi_time, entertainmentLocations);
         HashMap<String,HashMap<Location,Double>> entertainmentWalkingTime = parser.parse(R.raw.entertainment_walk_time, entertainmentLocations);
         for (HashMap.Entry<String,Location> entry: entertainmentLocations.entrySet()) {
             String locationName = entry.getKey();
-            entry.getValue().set(entertainmentTaxiTime.get(locationName), entertainmentTaxiCost.get(locationName), entertainmentPublicTTime.get(locationName), entertainmentPublicTCost.get(locationName), entertainmentWalkingTime.get(locationName));
+            Location location = entry.getValue();
+            location.travelTimesPublicT = entertainmentPublicTTime.get(locationName);
+            location.travelCostsPublicT = entertainmentPublicTCost.get(locationName);
+            location.travelTimesTaxi = entertainmentTaxiTime.get(locationName);
+            location.travelCostsTaxi = entertainmentTaxiCost.get(locationName);
+            location.travelTimesWalking = entertainmentWalkingTime.get(locationName);
         }
-        ArrayList<Location> locationsToFind = new ArrayList<>();
-        for (String s: parser.getLocationsFromAssets("Entertainment")) locationsToFind.add(entertainmentLocations.get(s));
-        //BruteForceSolver solver = new BruteForceSolver();
-        //solver.fastestRoute(locationsToFind.get(0), locationsToFind.get(0), locationsToFind);
-        //Log.d("TAZDINGO", solver.getOptimalRoute().toString());
-        ArrayList<LocationEdge> smartRoute = SmartSolver.solve(locationsToFind.get(0), locationsToFind.get(0), locationsToFind, 20.0);
-        SmartSolver.printRoute(smartRoute);
+        this.entertainmentLocations = entertainmentLocations;
+        // food
+        HashMap<String,Location> foodLocations = new HashMap<>();
+        for (String loc: DataParser.getLocationsFromAssets(getBaseContext(), Location.Genre.FOOD)) foodLocations.put(loc, new Location(loc));
+
+        HashMap<String,HashMap<Location,Double>> foodPublicTCost = parser.parse(R.raw.food_bus_cost, foodLocations);
+        HashMap<String,HashMap<Location,Double>> foodPublicTTime = parser.parse(R.raw.food_bus_time, foodLocations);
+        HashMap<String,HashMap<Location,Double>> foodTaxiCost = parser.parse(R.raw.food_taxi_cost, foodLocations);
+        HashMap<String,HashMap<Location,Double>> foodTaxiTime = parser.parse(R.raw.food_taxi_time, foodLocations);
+        HashMap<String,HashMap<Location,Double>> foodWalkingTime = parser.parse(R.raw.food_walk_time, foodLocations);
+        for (HashMap.Entry<String,Location> entry: foodLocations.entrySet()) {
+            String locationName = entry.getKey();
+            Location location = entry.getValue();
+            location.travelTimesPublicT = foodPublicTTime.get(locationName);
+            location.travelCostsPublicT = foodPublicTCost.get(locationName);
+            location.travelTimesTaxi = foodTaxiTime.get(locationName);
+            location.travelCostsTaxi = foodTaxiCost.get(locationName);
+            location.travelTimesWalking = foodWalkingTime.get(locationName);
+        }
+        this.foodLocations = foodLocations;
+        // museum
+        HashMap<String,Location> museumLocations = new HashMap<>();
+        for (String loc: DataParser.getLocationsFromAssets(getBaseContext(), Location.Genre.MUSEUM)) museumLocations.put(loc, new Location(loc));
+
+        HashMap<String,HashMap<Location,Double>> museumPublicTCost = parser.parse(R.raw.museum_bus_cost, museumLocations);
+        HashMap<String,HashMap<Location,Double>> museumPublicTTime = parser.parse(R.raw.museum_bus_time, museumLocations);
+        HashMap<String,HashMap<Location,Double>> museumTaxiCost = parser.parse(R.raw.museum_taxi_cost, museumLocations);
+        HashMap<String,HashMap<Location,Double>> museumTaxiTime = parser.parse(R.raw.museum_taxi_time, museumLocations);
+        HashMap<String,HashMap<Location,Double>> museumWalkingTime = parser.parse(R.raw.museum_walk_time, museumLocations);
+        for (HashMap.Entry<String,Location> entry: museumLocations.entrySet()) {
+            String locationName = entry.getKey();
+            Location location = entry.getValue();
+            location.travelTimesPublicT = museumPublicTTime.get(locationName);
+            location.travelCostsPublicT = museumPublicTCost.get(locationName);
+            location.travelTimesTaxi = museumTaxiTime.get(locationName);
+            location.travelCostsTaxi = museumTaxiCost.get(locationName);
+            location.travelTimesWalking = museumWalkingTime.get(locationName);
+        }
+        this.museumLocations = museumLocations;
+        // outdoor
+        HashMap<String,Location> outdoorLocations = new HashMap<>();
+        for (String loc: DataParser.getLocationsFromAssets(getBaseContext(), Location.Genre.OUTDOOR)) outdoorLocations.put(loc, new Location(loc));
+
+        HashMap<String,HashMap<Location,Double>> outdoorPublicTCost = parser.parse(R.raw.outdoor_bus_cost, outdoorLocations);
+        HashMap<String,HashMap<Location,Double>> outdoorPublicTTime = parser.parse(R.raw.outdoor_bus_time, outdoorLocations);
+        HashMap<String,HashMap<Location,Double>> outdoorTaxiCost = parser.parse(R.raw.outdoor_taxi_cost, outdoorLocations);
+        HashMap<String,HashMap<Location,Double>> outdoorTaxiTime = parser.parse(R.raw.outdoor_taxi_time, outdoorLocations);
+        HashMap<String,HashMap<Location,Double>> outdoorWalkingTime = parser.parse(R.raw.outdoor_walk_time, outdoorLocations);
+        for (HashMap.Entry<String,Location> entry: outdoorLocations.entrySet()) {
+            String locationName = entry.getKey();
+            Location location = entry.getValue();
+            location.travelTimesPublicT = outdoorPublicTTime.get(locationName);
+            location.travelCostsPublicT = outdoorPublicTCost.get(locationName);
+            location.travelTimesTaxi = outdoorTaxiTime.get(locationName);
+            location.travelCostsTaxi = outdoorTaxiCost.get(locationName);
+            location.travelTimesWalking = outdoorWalkingTime.get(locationName);
+        }
+        this.outdoorLocations = outdoorLocations;
+        // place of worship
+        HashMap<String,Location> placeOfWorshipLocations = new HashMap<>();
+        for (String loc: DataParser.getLocationsFromAssets(getBaseContext(), Location.Genre.PLACEOFWORSHIP)) placeOfWorshipLocations.put(loc, new Location(loc));
+
+        HashMap<String,HashMap<Location,Double>> placeOfWorshipPublicTCost = parser.parse(R.raw.placeofworship_bus_cost, placeOfWorshipLocations);
+        HashMap<String,HashMap<Location,Double>> placeOfWorshipPublicTTime = parser.parse(R.raw.placeofworship_bus_time, placeOfWorshipLocations);
+        HashMap<String,HashMap<Location,Double>> placeOfWorshipTaxiCost = parser.parse(R.raw.placeofworship_taxi_cost, placeOfWorshipLocations);
+        HashMap<String,HashMap<Location,Double>> placeOfWorshipTaxiTime = parser.parse(R.raw.placeofworship_taxi_time, placeOfWorshipLocations);
+        HashMap<String,HashMap<Location,Double>> placeOfWorshipWalkingTime = parser.parse(R.raw.placeofworship_walk_time, placeOfWorshipLocations);
+        for (HashMap.Entry<String,Location> entry: placeOfWorshipLocations.entrySet()) {
+            String locationName = entry.getKey();
+            Location location = entry.getValue();
+            location.travelTimesPublicT = placeOfWorshipPublicTTime.get(locationName);
+            location.travelCostsPublicT = placeOfWorshipPublicTCost.get(locationName);
+            location.travelTimesTaxi = placeOfWorshipTaxiTime.get(locationName);
+            location.travelCostsTaxi = placeOfWorshipTaxiCost.get(locationName);
+            location.travelTimesWalking = placeOfWorshipWalkingTime.get(locationName);
+        }
+        this.placeOfWorshipLocations = placeOfWorshipLocations;
     }
 
     private class GetWeatherTask extends AsyncTask<Void, Void, JSONObject> {
@@ -209,5 +290,31 @@ public class ItineraryPage extends AppCompatActivity {
         Intent intent = new Intent(context, LocationSelectionPage.class);
         intent.putExtra("genre", locationGenreSpinner.getSelectedItem().toString());
         startActivity(intent);
+    }
+
+    public void getItineraryButtonListener(View v) {
+        String selectedGenre = locationGenreSpinner.getSelectedItem().toString();
+        HashMap<String,Location> locationHashMap = null;
+        if (selectedGenre.equals(Location.Genre.ENTERTAINMENT)) locationHashMap = entertainmentLocations;
+        else if (selectedGenre.equals(Location.Genre.FOOD)) locationHashMap = foodLocations;
+        else if (selectedGenre.equals(Location.Genre.MUSEUM)) locationHashMap = museumLocations;
+        else if (selectedGenre.equals(Location.Genre.OUTDOOR)) locationHashMap = outdoorLocations;
+        else if (selectedGenre.equals(Location.Genre.PLACEOFWORSHIP)) locationHashMap = placeOfWorshipLocations;
+
+        SharedPreferences prefs = getBaseContext().getSharedPreferences(selectedGenre, Context.MODE_PRIVATE);
+        ArrayList<Location> locationsToVisit = new ArrayList<>();
+        // for the selected genre
+        for (String locationName: DataParser.getLocationsFromAssets(getBaseContext(), selectedGenre)) {
+            // check all locations in the genre, if selected, add to pool
+            if (prefs.getBoolean(locationName, false)) locationsToVisit.add(locationHashMap.get(locationName));
+        }
+        if (locationsToVisit.size() < 3) itineraryTextView.setText("At least 3 locations are required");
+        else {
+            Location startingLocation = locationHashMap.get("Marina Bay Sands");
+            double budget = Double.valueOf(PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("budget_settings", "20.0"));
+            ArrayList<LocationEdge> smartRoute = SmartSolver.solve(startingLocation, startingLocation, locationsToVisit, budget);
+            SmartSolver.printRoute(smartRoute);
+            itineraryTextView.setText(SmartSolver.routeToString(smartRoute));
+        }
     }
 }

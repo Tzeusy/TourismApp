@@ -72,7 +72,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/get_itinerary_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Get Itinerary"
+                android:onClick="getItineraryButtonListener" />
+
+            <TextView
+                android:id="@+id/itinerary_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/colorPrimaryDark"
+                android:fontFamily="casual"
+                android:text="Itinerary" />
+        </LinearLayout>
     </LinearLayout>
 
 </android.widget.LinearLayout>
