@@ -1,11 +1,13 @@
 package com.example.tze.tourismapptwo;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -30,12 +32,23 @@ public class HomePage extends AppCompatActivity {
 
         Button nearby = findViewById(R.id.Nearby);
         Button itinerary = findViewById(R.id.Itinerary);
-        Button settings = findViewById(R.id.About);
-//        settings.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                startActivity(new Intent(HomePage.this,SettingsActivity.class));
-//            }
-//        });
+        Button about = findViewById(R.id.About);
+        about.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(HomePage.this).create();
+                alertDialog.setTitle("About");
+                alertDialog.setMessage("Welcome to our app! Click on Nearby to see what is near you, " +
+                        "or click on Itinerary to choose the places you would like to visit, and we " +
+                        "will build your itinerary for you! Have fun and enjoy your stay in Singapore!");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }
+                );alertDialog.show();
+            }
+        });
     }
 
     public void itineraryButtonListener(View v) {
