@@ -40,7 +40,8 @@ public class CsvParser{
                 }
                 else{
                     HashMap<Location,Double> rowInformation = new HashMap<>();
-                    for(int i=1;i<nodes.length-1;i++){
+                    for(int i=0;i<nodes.length;i++){
+                        if(i==0) continue;
                         rowInformation.put(locationHashMap.get(locations.get(i-1)),Double.valueOf(nodes[i]));
                     }
                     rows.put(nodes[0], rowInformation);
