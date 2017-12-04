@@ -10,6 +10,15 @@
         android:defaultValue="@string/defaultemail"
         android:textColor="@color/blue"
         />
+    <EditTextPreference
+        android:key="budget_setting"
+        android:title="Daily Budget"
+        android:persistent="true"
+        android:dialogTitle="Daily Budget"
+        android:dialogMessage="@string/dailybudgetquestion"
+        android:defaultValue="@string/twenty"
+        android:textColor="@color/blue"
+        />
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="night_mode"

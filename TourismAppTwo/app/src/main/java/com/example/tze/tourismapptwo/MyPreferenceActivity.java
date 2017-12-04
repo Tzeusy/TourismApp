@@ -31,6 +31,7 @@ public class MyPreferenceActivity extends Activity {
         String email = prefs.getString("email","");
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //firebase doesn't accept "."
         email = email.replace(".","");
         DatabaseReference myRef = database.getReference(email);
 
@@ -41,19 +42,22 @@ public class MyPreferenceActivity extends Activity {
                 boolean nightmode=false;
                 boolean notifications=false;
                 String language="English";
+                String dailybudget="20";
                 for(DataSnapshot data:dataSnapshot.getChildren()){
                     String information = data.getValue().toString();
-                    Log.d("Please",data.getValue().toString());
                     information = information.replace("{","");
                     information = information.replace("}","");
                     String[] categories = information.split(",");
                     for(String s:categories){
-                        Log.d("Please",s);
                         if(s.contains("true")&&s.contains("night_mode")){
                             nightmode=true;
                         }
                         if(s.contains("true")&&s.contains("notifications_setting")){
                             notifications=true;
+                        }
+                        if(s.contains("budget_setting")){
+                            String[] m = s.split("=");
+                            dailybudget=m[1];
                         }
                         if(s.contains("Malay")){
                             language="Malay";
@@ -68,10 +72,8 @@ public class MyPreferenceActivity extends Activity {
                 editor.putBoolean("night_mode",nightmode);
                 editor.putBoolean("notifications_setting",notifications);
                 editor.putString("language_setting",language);
+                editor.putString("budget_setting",dailybudget);
                 editor.commit();
-
-//                HashMap<String,Object> value = dataSnapshot.getValue(HashMap.class);
-//                Log.d("Please","Value is:"+value.toString());
             }
 
             @Override

@@ -25,6 +25,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="CurrentLocation">You are currently in </string>
     <string name="maplocation">Singapore</string>
+    <string name="twenty">20</string>
+    <string name="dailybudgetquestion">What is your Daily Budget?</string>
 
     <string-array name="locations_genre_array">
         <item>Entertainment</item>
