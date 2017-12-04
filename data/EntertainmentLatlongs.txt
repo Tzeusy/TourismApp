@@ -1,0 +1,24 @@
+Esplanade - Theatres on the Bay|1.2897934,103.8558166
+Geylang Serai Market|1.3167284,103.8982767
+G-Max Reverse Bungy|1.2905036,103.8466627
+Haw Par Villa|1.2835657,103.7816432
+House of Tan Teng Niah|1.307168,103.850992
+Joo Chiat Street|1.3099091,103.9020269
+Marina Bay Sands Casino|1.2830623,103.858781
+Marina Bay Sands SkyPark|1.2839431,103.8609341
+NEWater Visitor Centre|1.3242462,103.9586772
+Raffles Place|1.2840999,103.8513269
+Resort World Sentosa Casino|1.255179,103.8218107
+Sentosa Skyline Luge and Skyride|1.251937,103.8169385
+Singapore Bazaar and Flea Market|1.3029901,103.8529751
+Singapore Discovery Centre|1.3326904,103.6789432
+Singapore F1 Grand Prix|1.3057861,103.8281196
+Singapore Flyer|1.2892988,103.8631368
+Singapore River|1.2891166,103.8404664
+Science Centre Singapore|1.3332332,103.7362246
+Statues of Sir Stamford Raffles|1.2877221,103.8507546
+The Padang|1.2905564,103.8530438
+Underwater World Singapore Pte Ltd|1.258183,103.811225
+Universal Studios Singapore|1.2540421,103.8238084
+Wonder Full at Marina Bay Sands|1.2842083,103.8582327
+Marina Bay Sands|1.2845442,103.8595898

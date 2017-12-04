@@ -1,0 +1,94 @@
+Abdul Gaffoor Mosque|1.3043679,103.8536667
+Adventure Cove Waterpark|1.2590849,103.8189807
+ArtScience Museum|1.2862738,103.8592663
+Asian Civilisation Museum|1.2874969,103.8513861
+Bright Hill Temple (Khong Meng San Phor Kark See Temple)|1.3609789,103.8361753
+Buddha Tooth Relic Temple|1.2813993,103.8442684
+Bukit Timah Nature Reserve|1.3483925,103.7774628
+Cathedral of the Good Shepherd|1.2961055,103.8511091
+Central Catchment Nature Reserve|1.3551526,103.7972022
+Central Sikh Temple|1.3188143,103.8605539
+Changi Prison Chapel and Museum|1.3621204,103.9740344
+Chijmes|1.295059,103.8521521
+Chinatown Heritage Centre|1.2835085,103.8443515
+Telok Ayer Chinese Methodist Church|1.2784536,103.8469676
+The Crane Dance|1.258626,103.82193
+East Coast Park|1.3007842,103.9121866
+Esplanade - Theatres on the Bay|1.2897934,103.8558166
+Eu Yan Sang International Ltd|1.3250054,103.9323711
+Fort Canning Park|1.2941149,103.8463071
+Gardens by the Bay|1.2815683,103.8636132
+Geylang Serai Market|1.3167284,103.8982767
+G-Max Reverse Bungy|1.2905036,103.8466627
+Hajjah Fatimah Mosque|1.3029139,103.862853
+Haw Par Villa|1.2835657,103.7816432
+HortPark|1.2787362,103.8018322
+House of Tan Teng Niah|1.307168,103.850992
+Images of Singapore|1.2540472,103.8176064
+Istana|1.306996,103.8430853
+Jamae Mosque|1.2831582,103.8454475
+Joo Chiat Street|1.3099091,103.9020269
+Jurong Bird Park|1.3187065,103.7064417
+Katong|27.989983,96.643432
+Kranji War Memorial|1.4189507,103.7580545
+Kusu Island|1.2232435,103.8611194
+Kwan Im Thong Hood Cho Temple|1.3008609,103.8529981
+Lau Pa Sat (Telok Ayer Market)|1.280684,103.8504436
+Leong San See Temple|1.3151969,103.856839
+Maghain Aboth Synagogue|1.2982149,103.8508071
+Malay Heritage Centre|1.30275,103.8600008
+Malay Village|11.9003045,121.958687
+Mandai Orchid Gardens|1.4071116,103.7845357
+Marina Barrage|1.2805281,103.8711746
+Marina Bay Sands Casino|1.2830623,103.858781
+Marina Bay Sands SkyPark|1.2839431,103.8609341
+Maxwell Road Hawker Centre|1.2804306,103.8448218
+Merlion Park|1.2867892,103.8545014
+Mount Faber Park|1.2737864,103.8174964
+Nagore Durgha Shrine|1.2814555,103.8478807
+National Museum of Singapore|1.2966375,103.8486646
+National Orchid Garden|1.3116834,103.8149013
+NEWater Visitor Centre|1.3242462,103.9586772
+Peranakan Museum|1.2943669,103.8490391
+Pulau Ubin|1.4125659,103.9577334
+Raffles Hotel|1.2948829,103.8544791
+Raffles Place|1.2840999,103.8513269
+Red Dot Design Museum|1.280147,103.8563214
+Resort World Sentosa Casino|1.255179,103.8218107
+Sentosa Skyline Luge and Skyride|1.251937,103.8169385
+Singapore Art Museum|1.2973072,103.8510615
+Singapore Bazaar and Flea Market|1.3029901,103.8529751
+Singapore Botanic Gardens|1.3138397,103.8159136
+Singapore Butterfly and Insect Kingdom|1.2554495,103.8168035
+Singapore Discovery Centre|1.3326904,103.6789432
+Singapore F1 Grand Prix|1.3057861,103.8281196
+Singapore Flyer|1.2892988,103.8631368
+The Singapore Mint|1.2850782,103.8450183
+Singapore Navy Museum|1.3171787,104.0203621
+Singapore Night Safari|1.4021872,103.7880606
+Singapore Philatelic Museum|1.2928447,103.8487025
+Singapore River|1.2891166,103.8404664
+Science Centre Singapore|1.3332332,103.7362246
+Singapore Zoo|1.4043485,103.793023
+Siong Lim Temple|1.330419,103.8573145
+Sisters' Islands|1.2146211,103.8350308
+Sri Krishnan Temple|1.3005668,103.8526519
+Sri Mariamman Temple|1.2826847,103.8451304
+Sri Srinivasa Perumal Temple|1.3132231,103.8559222
+Sri Thandayuthapani Temple|1.2943222,103.843047
+Sri Veeramakaliamman Temple|1.3078831,103.8524431
+Saint Andrew's Cathedral|55.8554847,-4.2529255
+Statues of Sir Stamford Raffles|1.2877221,103.8507546
+Sultan Mosque|1.3022424,103.8590348
+Sungei Buloh Nature Park|1.4467195,103.7301489
+Former City Hall|1.2912718,103.8518183
+Temple of 1000 Lights (Sakyamuni Buddha Gaya Temple)|1.314743,103.8569747
+The Padang|1.2905564,103.8530438
+The Southern Ridges|1.2801016,103.8029949
+Thian Hock Keng Temple|1.2810871,103.8474767
+Treetop Walk at MacRitche Reservoir|1.3607287,103.8125215
+Underwater World Singapore Pte Ltd|1.258183,103.811225
+Universal Studios Singapore|1.2540421,103.8238084
+Wings of Time|1.2511681,103.8169567
+Wild Wild Wet @ Downtown East|1.3773814,103.9543187
+Wonder Full at Marina Bay Sand|1.2842083,103.8582327

@@ -313,7 +313,6 @@ public class ItineraryPage extends AppCompatActivity {
             Location startingLocation = locationHashMap.get("Marina Bay Sands");
             double budget = Double.valueOf(PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("budget_settings", "20.0"));
             ArrayList<LocationEdge> smartRoute = SmartSolver.solve(startingLocation, startingLocation, locationsToVisit, budget);
-            SmartSolver.printRoute(smartRoute);
             itineraryTextView.setText(SmartSolver.routeToString(smartRoute));
         }
     }
