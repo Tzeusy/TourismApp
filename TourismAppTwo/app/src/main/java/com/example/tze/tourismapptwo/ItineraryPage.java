@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,9 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +27,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ItineraryPage extends AppCompatActivity {
 
@@ -58,6 +57,7 @@ public class ItineraryPage extends AppCompatActivity {
         locationCountTextView = (TextView)findViewById(R.id.location_count_text_view);
 
         updateSelectedLocations();
+        parseAllCsv();
         (new GetWeatherTask()).execute();
     }
 
@@ -80,6 +80,30 @@ public class ItineraryPage extends AppCompatActivity {
         }
         selectedLocations = list;
         locationCountTextView.setText("Locations selected " + selectedLocations.size());
+    }
+
+    private void parseAllCsv() {
+        Context context = getBaseContext();
+        CsvParser parser = new CsvParser(context);
+        // distance.csv == Location.travelCosts, time.csv == Location.travelTimes
+        // entertainment
+        HashMap<String,Location> entertainmentLocations = new HashMap<>();
+        for (String loc: parser.getLocationsFromAssets("Entertainment")) entertainmentLocations.put(loc, new Location(loc));
+
+        HashMap<String,HashMap<Location,Double>> entertainmentPublicTCost = parser.parse(R.raw.entertainment_bus_distance, entertainmentLocations);
+        HashMap<String,HashMap<Location,Double>> entertainmentPublicTTime = parser.parse(R.raw.entertainment_bus_time, entertainmentLocations);
+        HashMap<String,HashMap<Location,Double>> entertainmentTaxiCost = parser.parse(R.raw.entertainment_taxi_distance, entertainmentLocations);
+        HashMap<String,HashMap<Location,Double>> entertainmentTaxiTime = parser.parse(R.raw.entertainment_taxi_time, entertainmentLocations);
+        HashMap<String,HashMap<Location,Double>> entertainmentWalkingTime = parser.parse(R.raw.entertainment_walk_time, entertainmentLocations);
+        for (HashMap.Entry<String,Location> entry: entertainmentLocations.entrySet()) {
+            String locationName = entry.getKey();
+            entry.getValue().set(entertainmentTaxiTime.get(locationName), entertainmentTaxiCost.get(locationName), entertainmentPublicTTime.get(locationName), entertainmentPublicTCost.get(locationName), entertainmentWalkingTime.get(locationName));
+        }
+        ArrayList<Location> locationsToFind = new ArrayList<>();
+        for (String s: parser.getLocationsFromAssets("Entertainment")) locationsToFind.add(entertainmentLocations.get(s));
+        BruteForceSolver solver = new BruteForceSolver();
+        solver.fastestRoute(locationsToFind.get(0), locationsToFind.get(0), locationsToFind);
+        Log.d("TAZDINGO", solver.getOptimalRoute().toString());
     }
 
     private class GetWeatherTask extends AsyncTask<Void, Void, JSONObject> {

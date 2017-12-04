@@ -57,7 +57,7 @@ public class LocationSelectionPage extends AppCompatActivity {
 
         genre = getIntent().getStringExtra("genre");
         // doing RecyclerView things
-        locations = getLocationsFromAssets();
+        locations = (new CsvParser(getBaseContext())).getLocationsFromAssets(genre);
         locationRecyclerView = (RecyclerView)findViewById(R.id.location_recycler_view);
         locationAdapter = new LocationAdapter(this, locations, genre, locationHeaderTextView, locationDataTextView, locationImageView);
         locationRecyclerView.setAdapter(locationAdapter);
@@ -69,27 +69,5 @@ public class LocationSelectionPage extends AppCompatActivity {
         locationRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
-    private ArrayList<String> getLocationsFromAssets() {
-        String filename = "";
-        if (genre.equals("selected_locations")) filename = "sample_locations.txt";
 
-        ArrayList<String> list = new ArrayList<>();
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(new InputStreamReader(getAssets().open(filename)));
-            String line;
-            while((line = reader.readLine()) != null) {
-                list.add(line);
-            }
-        }
-        catch (IOException e) { Log.d(TAG, "Error retrieving locations from assets: " + e.toString()); }
-        finally {
-            if (reader != null) {
-                try { reader.close(); }
-                catch (IOException e) { Log.d(TAG, "Error closing location reader: " + e.toString()); }
-            }
-        }
-
-        return list;
-    }
 }

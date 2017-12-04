@@ -148,10 +148,9 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
                 catch (UnsupportedEncodingException e) { Log.d(TAG, "Error when encoding location as URL: " + e.toString()); }
                 catch (MalformedURLException e) { Log.d(TAG, "Error when converting to URL: " + e.toString()); }
                 catch (JSONException e) {
-                    res = location;
                     Log.d(TAG, "Error when converting " + location + " Wikipedia info to JSON: " + e.toString());
                 }
-                return res.substring(0, res.indexOf('.')+1); // return only first sentence
+                return res;
             }
 
             @Override

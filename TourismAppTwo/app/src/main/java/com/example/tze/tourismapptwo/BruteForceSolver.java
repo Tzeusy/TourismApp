@@ -12,19 +12,18 @@ import java.util.HashMap;
 
 public class BruteForceSolver {
 
-    private ArrayList<Location> listOfLocationsToVisit;
     private double[] costTimeAndSteps;
     private ArrayList<Location> optimalRoute;
-
-    public BruteForceSolver(ArrayList<Location> listOfLocationsToVisit){
-        this.listOfLocationsToVisit = listOfLocationsToVisit;
-    }
 
     public double[] getCostTimeAndSteps() {
         return costTimeAndSteps;
     }
     public ArrayList<Location> getOptimalRoute() {
         return optimalRoute;
+    }
+
+    public double[] fastestRoute(Location currLocation, Location finalLocation, ArrayList<Location> listLocationsToVisit) {
+        return fastestRoute(currLocation, finalLocation, listLocationsToVisit, new ArrayList<Location>(), new double[]{0.0,0.0,0.0}, 0);
     }
 
     public double[] fastestRoute(Location currLocation, Location finalLocation,
@@ -53,7 +52,7 @@ public class BruteForceSolver {
 
         //save an immutable version so we can have several different array lists each missing ONE element for the purpose of recursion.
         final ArrayList<Location> restorePoint = listLocationsToVisit;
-        for(Location nextDestination:restorePoint){
+        for (Location nextDestination: restorePoint){
             //we have our next Destination
             //now we get the time and cost for this rabbit hole - through 3 possible paths
             double timeSoFar;

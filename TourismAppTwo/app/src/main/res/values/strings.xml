@@ -27,9 +27,10 @@
     <string name="maplocation">Singapore</string>
 
     <string-array name="locations_genre_array">
-        <item>selected_locations</item>
-        <item>Fun</item>
-        <item>Not Fun</item>
-        <item>Children</item>
+        <item>Entertainment</item>
+        <item>Food</item>
+        <item>Museum</item>
+        <item>Outdoor</item>
+        <item>Place of Worship</item>
     </string-array>
 </resources>
