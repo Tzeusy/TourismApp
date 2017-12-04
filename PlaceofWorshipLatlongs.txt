@@ -18,3 +18,4 @@ Sri Veeramakaliamman Temple|1.3078831,103.8524431
 Sultan Mosque|1.3022424,103.8590348
 Temple of 1000 Lights (Sakyamuni Buddha Gaya Temple)|1.314743,103.8569747
 Thian Hock Keng Temple|1.2810871,103.8474767
+Marina Bay Sands|1.2845442,103.8595898

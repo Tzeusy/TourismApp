@@ -21,4 +21,4 @@ for l in open("EntertainmentLocations.txt"):
     r = r[0]["geometry"]["location"]
     locations[l] = str(r["lat"]) + "," + str(r["lng"])
     f.write(l[:len(l) - 1] + "|" + locations[l] + "\n")
-    
+    f.flush()

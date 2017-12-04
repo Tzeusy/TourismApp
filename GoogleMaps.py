@@ -2,7 +2,7 @@ import requests
 import json
 
 class GoogleMaps:
-    API_KEY = "  AIzaSyDKvwXnlAQ6velp7HzzHqBbPAMvik7N5y4  "
+    API_KEY = "   AIzaSyC0EQaL0WPtvtZzKdb86dI5-CFkoqHmNwU   "
     GEOCODE_API = " AIzaSyCfwFQHj-v03_4juOrRcF4cKSQwOpznu3Y "
     def getDistanceData(self, origin, destination):
 		url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" + origin + "&destinations=" + destination + "&key=" + self.API_KEY
